@@ -1,0 +1,42 @@
+---
+name: Introduction
+route: /
+---
+
+# Introduction
+
+**ts-plate** is a collection of TypeScript resources. The goal is to collect instructions and setups on how one can adopt TypeScript in different contexts. Be it for frontend or backend - existing Javascript code base or starting out from scratch - this site aims to collect resources to get started.
+
+With the tooling and configuration options that exists today TypeScript can be experimented with in an incremental fashion. For existing Javascript projects adopting TypeScript doesn't have to be a 100% buy in - i.e. converting all files to TypeScript or having to type annotate all the things. In fact, since TypeScript is a superset of Javascript all your current Javascript is valid TypeScript. Adding TypeScript compiler rules step by step you can decide what TypeScript features you would like to adopt. In time, as you add TypeScript typings and features to your project you might discover the benefits that TypeScript offers:
+
+* Your code becomes less prone to bugs. Misspelled variables and errors that stems from incorrect function or data type usage - catch these straight in your IDE long before that angry customer calls you about that bug that ended up in production.
+* Autocomplete all the things 😎
+* Refactoring becomes easier: Many times its handled automatically. Other times, for instance when changing function arguments in one file, TypeScript will tell you where in all those 10 files your code needs to be fixed.
+* Many times easier to dive into TypeScript code bases as well as scaling a project up in size. Without having to switch to your browser to find the documentation for that library function you're using TypeScript will tell you what arguments the function expects and what data it returns. With that nested JSON object returned from an external REST API being typed you can stay in your IDE and focus more on what matters - building awesome features effectively.
+
+Be patient on your journey learning TypeScript - TS can be everything from simple adding type annotation to your variables and function arguments to constructing extremely portable and generic components/functions that leverage full type safety no matter what contexts you use them in.
+
+Here's an example of usage of a more advanced TypeScript feature, **discriminated-union-types**. 
+
+```typescript
+// Define the function return type
+type Result<T> =
+    | { success: true; value: T }
+    | { success: false; error: string };
+
+// type safe parseInt function
+function tryParseInt(text: string): Result<number> {
+    if (/^-?\d+$/.test(text)) {
+        return {
+            success: true,
+            value: parseInt(text, 10)
+        };
+    }
+    return {
+        success: false,
+        error: "Invalid number format"
+    };
+}
+```
+This example comes from Marius Schulz "Advanced Types in TypeScript" egghead.io course. [Course link](https://egghead.io/courses/advanced-static-types-in-typescript)
+ [Code](https://github.com/mariusschulz/egghead-advanced-typescript/blob/master/10-discriminated-union-types/src/index.ts)

@@ -1,0 +1,26 @@
+---
+name: Fast setup
+route: /adding-ts/fast-setup
+menu: Adding TS to a JS project
+---
+
+# Fast setup
+
+Adding TS to your JS project essentially consists of the following steps:
+
+1. Install the TypeScript compiler **tsc**
+
+```bash
+yarn add typescript -D
+```
+
+or if you prefer npm:
+
+```bash
+npm install typescript --save-dev
+```
+
+
+2. Configure and hook up the TypeScript compiler.
+
+First make sure you know your current JS build chain (if any) and what parts it consist of. This could be bundlers such as webpack, gulp or grunt. A common part in the build chain is Babel that transpiles modern JS features to the targeted environment - be it browsers or node. How you want to hook up tsc commonly comes down the following 2 scenarios:
