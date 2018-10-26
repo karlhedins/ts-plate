@@ -5,7 +5,7 @@ route: /
 
 # Introduction
 
-**ts-plate** is a collection of TypeScript resources. The goal is to collect instructions and setups on how one can adopt TypeScript in different contexts. Be it for frontend or backend - existing Javascript code base or starting out from scratch - this site aims to collect resources to get started.
+**ts-plate** is a collection of TypeScript resources. The goal is to collect instructions and setups on how one can adopt TypeScript in different contexts. Be it for frontend or backend - existing Javascript code base or starting out from scratch - this site aims to collect resources for getting started.
 
 With the tooling and configuration options that exists today TypeScript can be experimented with in an incremental fashion. For existing Javascript projects adopting TypeScript doesn't have to be a 100% buy in - i.e. converting all files to TypeScript or having to type annotate all the things. In fact, since TypeScript is a superset of Javascript all your current Javascript is valid TypeScript. Adding TypeScript compiler rules step by step you can decide what TypeScript features you would like to adopt. In time, as you add TypeScript typings and features to your project you might discover the benefits that TypeScript offers:
 
@@ -14,7 +14,14 @@ With the tooling and configuration options that exists today TypeScript can be e
 * Refactoring becomes easier: Many times its handled automatically. Other times, for instance when changing function arguments in one file, TypeScript will tell you where in all those 10 files your code needs to be fixed.
 * Many times easier to dive into TypeScript code bases as well as scaling a project up in size. Without having to switch to your browser to find the documentation for that library function you're using TypeScript will tell you what arguments the function expects and what data it returns. With that nested JSON object returned from an external REST API being typed you can stay in your IDE and focus more on what matters - building awesome features effectively.
 
-Be patient on your journey learning TypeScript - TS can be everything from simple adding type annotation to your variables and function arguments to constructing extremely portable and generic components/functions that leverage full type safety no matter what contexts you use them in.
+You can think of TypeScript like a linter with super powers - it catches bugs and adds to the developer expeience in a way that a Javascript linter never even could come close to 👩‍🎤. This is simply due to the fact of Javascripts loosly typed nature where everything can be monkey patched and changed on the go.
+
+In TypeScript your coding experience could look like this:
+
+![](https://github.com/Hotell/blogposts/raw/c5087e6911a1c4ab81d20cb95a478f93d4c3f52e/2018-02/private-properties-in-webcomponents/img/toggleable-component-private-symbols-IDE.gif)
+*Credit for the gif goes to TypeScript wizard Martin Hochel* [github](https://github.com/Hotell/)
+
+Be patient on your journey learning TypeScript - TS can be everything from simply adding type annotation to your variables and function arguments to using algebraic data types and generics for constructing extremely flexible components/functions that leverage full type safety no matter what contexts you use them in.
 
 Here's an example of usage of a more advanced TypeScript feature, **discriminated-union-types**. 
 
@@ -38,5 +45,4 @@ function tryParseInt(text: string): Result<number> {
     };
 }
 ```
-This example comes from Marius Schulz "Advanced Types in TypeScript" egghead.io course. [Course link](https://egghead.io/courses/advanced-static-types-in-typescript)
- [Code](https://github.com/mariusschulz/egghead-advanced-typescript/blob/master/10-discriminated-union-types/src/index.ts)
+This example comes from Marius Schulz "Advanced Types in TypeScript" egghead.io course. [Course link](https://egghead.io/courses/advanced-static-types-in-typescript) | [Code](https://github.com/mariusschulz/egghead-advanced-typescript/blob/master/10-discriminated-union-types/src/index.ts)

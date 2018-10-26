@@ -1,0 +1,95 @@
+---
+name: Adopting TS step by step
+route: /adding-ts/adopting-ts
+menu: Adding TS to a JS project
+---
+
+# Adopting TS step by step
+
+To incrementally gain more of the benefits that TypeScript type checking offers there are mainly 4 things to do next.
+
+## 1. Install type packages
+Install types for the npm packages you are using. Most popular packages have already been typed by the TS community. Check [DefinitelyTyped TypeSearch](https://microsoft.github.io/TypeSearch/) and install them. Example for React - types for `react` and `react-dom` can be installed like so:
+
+```bash
+yarn add @types/react @types/react-dom -D
+```
+
+If your third party npm package lacks typings you can read more about creating your own for it [here](https://basarat.gitbooks.io/typescript/docs/types/ambient/d.ts.html)
+
+## 2. Make the TypeScript compiler stricter
+Gradually add config options in tsconfig.json to have tsc catch even more bugs and enforcement of types. For instance - look into these properties and consider enabling them as you wish:
+
+```javascript
+/* Strict Type-Checking Options */
+"strictNullChecks": true, /* Enable strict null checks. */
+"noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
+"noImplicitAny": true, /* Raise error on expressions and declarations with an implied 'any' type. */
+"strict": true, /* The end game: Enable all strict type-checking options for full type saftey power. */
+"checkJs": true, /* Report errors in .js files. */
+```
+
+For a full list of tsconfig.json options and what they do see the official TypeScript documentation for it: [Link](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
+
+
+## 3. Convert JS files to TS
+TypeScript does a pretty good job at inferring types even in js files. Step by step rename .js to .ts files and fix the errors that arises. This ensures that TypeScript can flex its full capability of type checking across your project. What about the remaining JS files? More on that below...
+
+
+## 4. Add type checking to JS files
+Sometimes you want to keep some JS files as they are. It might be code that is tricky to convert to TS given your tsconfig.json rules, time, or your current TS knowledge. It might be legacy code that should be left as is for whatever reason. Luckily there are options for these cases to still leverage some of the TS goodness. As mentioned above one option is too add `checkJs": true` to your tsconfig.json - this will type check all JS files, giving you a somewhat stripped down type safety capacity - but hey - it's easy to enable. Checking all JS files in a large code base however might give you too many things to fix at once. What you could do instead is adding JS type checking on a file-by-file basis. This can be done by adding the following to the top of a JS file:
+
+```javascript
+// @ts-check
+```
+
+For even more fine granular control for specifically adding type safety to that business critical part of a JS file you could also add JSDoc annotations. These can be added to functions, arguments, variables etc. TypeScript will pick it up and enable type checking across files for the parts you annotate. Here's an example:
+
+```javascript
+/** @type{Array.<number>} */
+const myFavouriteNumbers = [];
+```
+
+Another cool use case for JSDoc annotations is adding type safety for your **webpack.config.js**. This can even be done on pure javascript projects - and with an IDE that supports TypeScript (like VS Code) you don't even have to add TypeScript to your project. First add types for webpack:
+
+```bash
+yarn add -D @types/webpack
+```
+
+Now you need to edit your **webpack.config.js**. This file usually looks like this in the top:
+
+```javascript
+module.exports = {
+  ...
+```
+
+Change this to:
+
+```javascript
+// @ts-check
+
+/** @type {import('webpack').Configuration} */
+const config = {
+    ...
+```
+
+Then in the bottoom of the file export the config:
+
+```javascript
+module.exports = config;
+```
+
+Just like that! Autocomplete and suggestions of what values that specific webpack config property can have 🎉.
+
+For more information on JSDoc annotations for type checking see the official documentation [here](https://github.com/Microsoft/TypeScript/wiki/JSDoc-support-in-JavaScript).
+
+## 4. Keep learning
+
+Last but not least - keep learning more of the TypeScript features and add them bit by bit. Two good resources for this are:
+
+[TypeScript Progression Ladder](http://www.techladder.io/?tech=typescript)
+
+[TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/)
+
+
+

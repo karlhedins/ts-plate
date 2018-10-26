@@ -10,8 +10,13 @@ module.exports = {
     'Introduction',
     {
       name: 'Adding TS to a JS project',
-      menu: ['Fast setup'],
+      menu: ['Initial setup', 'Adopting TS step by step'],
     },
+    {
+      name: 'Starting a new TS project',
+      menu: ['Frontend', 'Backend'],
+    },
+    'TS-Resources',
     { name: 'Github', href: 'https://github.com/karlhedins/ts-plate' },
   ],
   htmlContext: {

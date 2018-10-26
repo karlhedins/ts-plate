@@ -1,0 +1,93 @@
+---
+name: Initial setup
+route: /adding-ts/initial-setup
+menu: Adding TS to a JS project
+---
+
+# Initial setup
+
+Adding TS to your JS project essentially consists of the following steps:
+
+## 1. Install the TypeScript compiler - **tsc**
+
+```bash
+yarn add typescript -D
+```
+
+or if you prefer npm:
+
+```bash
+npm install typescript --save-dev
+```
+
+## 2. Decide where to hook up the TypeScript compiler.
+
+First make sure you know your current JS build chain (if any) and what parts it consist of. This could be bundlers such as webpack, gulp or grunt. A common part in the build chain is Babel that transpiles modern JS features to the targeted environment - be it browsers or node.
+
+Depending on your JS application's npm packages and build config there are a few things you need to consider in order to accomplish a successful TS/JS setup.
+
+If your application uses Babel you can decide to:
+
+### Keeping Babel
+You have Babel presets/plugins that you intend to keep - for instance special plugins for your styling library or other custom plugins that is needed for your app. In this case TypeScript can be added as a part of the babel transpilation chain with the official Babel Typescript preset - [@babel/preset-typescript](https://babeljs.io/docs/en/babel-preset-typescript#docsNav).
+
+The Babel Typescript preset only strips away the TypeScript types in the transpilation chain - type checking needs to be handled by a separate tsc -w process your and/or your IDE (VS Code recommended).
+
+### Switching out Babel for tsc
+You might have a few standard Babel presets/plugins setup. You are fine with handing the transpilation over to the TypeScript compiler since it does most things that Babel does in terms of transpiling modern JS features down to the desired target.
+
+### Webpack configuration
+If you are using Webpack two popular loaders are [ts-loader](https://github.com/TypeStrong/ts-loader) and [awesome-typescript-loader](https://github.com/s-panferov/awesome-typescript-loader). Here is a [npmtrends](https://www.npmtrends.com/ts-loader-vs-awesome-typescript-loader) comparison of the two.
+
+### Integrating with other build tools
+For more information on integrating with other build tools such as Gulp, Grunt, Browserify etc. -
+here is a link to the official TypeScript documentation on the subject: [Link](https://www.typescriptlang.org/docs/handbook/integrating-with-build-tools.html).
+
+## 3. Configure the TypeScript compiler - **tsconfig.json**
+The final step of setting up TypeScript for your project is configuring the TypeScript compiler config file - **tsconfig.json**.
+Depending on how TypeScript was decided to be included in Step 2 there might be certain tsconfig.json options that might be needed to fit your projects setup. Those options might be described in the build tool loader's repositoy. But as a bare minimum, here is how you could create a baseline config yourself:
+
+```bash
+tsc --init
+```
+
+This generates a tsconfig.json file with a few defaults, but most imporantly it has all the options and what they do commented out so that you easily can add them in later. Wether you got the tsconfig.json from the `tsc --init` command or from your build loader of choice - make sure that you set the `"allowJs": true,` property. This allows TS and JS files to coexist and gives you full control of adding as much or as little TypeScript you want - just rename a `.js` file to `.ts` and `.jsx` to `.tsx` when you want.
+
+An example project folder structure might look like this:
+
+```
+projectRoot
+├── src
+│   ├── myFunction.js
+│   └── index.js
+├── built
+└── tsconfig.json
+```
+
+A baseline tsconfig.json for this structure could then look like this:
+
+```javascript
+{
+    "compilerOptions": {
+        "outDir": "./built",
+        "allowJs": true,
+        "target": "es5"
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}
+```
+
+If you now run `tsc` or your build tool at the root of your project you should see output files in the built directory transpiled to ES5.
+
+If you want to have es module import/export work out of the box make sure to enable the following option:
+
+```
+"esModuleInterop": true,
+```
+
+This enables interoperability between CommonJS and ES Modules.
+
+With a working build TypeScript/JS build chain you can read more about next steps to take in [Adopting TS step by step](/adding-ts/adopting-ts)
+
