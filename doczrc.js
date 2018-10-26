@@ -1,5 +1,6 @@
 const style = `<style>button[title='Copy to clipboard'] svg { color: #fff; }</style>`;
 import pkg from './package.json';
+import doczPluginNetlify from 'docz-plugin-netlify';
 
 module.exports = {
   src: './src',
@@ -36,4 +37,5 @@ module.exports = {
       primary: '#077db2',
     },
   },
+  plugins: [doczPluginNetlify()],
 };
