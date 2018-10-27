@@ -31,7 +31,8 @@ If your application uses Babel you can decide to:
 ### Keeping Babel
 You have Babel presets/plugins that you intend to keep - for instance special plugins for your styling library or other custom plugins that is needed for your app. In this case TypeScript can be added as a part of the babel transpilation chain with the official Babel Typescript preset - [@babel/preset-typescript](https://babeljs.io/docs/en/babel-preset-typescript#docsNav).
 
-The Babel Typescript preset only strips away the TypeScript types in the transpilation chain - type checking needs to be handled by a separate tsc -w process your and/or your IDE (VS Code recommended).
+The Babel Typescript preset only strips away the TypeScript types in the transpilation chain - type checking needs to be handled by a separate tsc -w process your and/or your IDE (VS Code recommended). Be sure to enable `"noEmit": true"` in your tsconfig.json to allow Babel to transform files.
+		
 
 ### Switching out Babel for tsc
 You might have a few standard Babel presets/plugins setup. You are fine with handing the transpilation over to the TypeScript compiler since it does most things that Babel does in terms of transpiling modern JS features down to the desired target.
