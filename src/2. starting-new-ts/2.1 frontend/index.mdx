@@ -16,44 +16,16 @@ https://stackblitz.com/fork/typescript
 
 ## React - create-react-app 2
 
-As of October 01, 2018, the extremely popular starter project from the Facebook React team released the long awaited version 2 of it's tool.
-Packed with all the latest goodies [see the blogpost](https://reactjs.org/blog/2018/10/01/create-react-app-v2.html) it is a great starter for React apps.
-For extra icing on the cake for TypeScript enthusiast, on October 22 a [PR got merged](https://github.com/facebook/create-react-app/pull/4837) into master that adds TypeScript support as opt in for CRA. As of October 26 it is yet to be released - so keep an eye out for that. Until then - here's how you can use it out today:
-
-Go to the CRA repo and clone it
-
-https://github.com/facebook/create-react-app
-
-In the CRA root:
+As of October 29, 2018, the extremely popular starter project from the Facebook React team released the long awaited version 2 of it's tool with TypeScript support.
+Packed with all the latest goodies [see the blogpost](https://reactjs.org/blog/2018/10/01/create-react-app-v2.html) it is a great starter for React apps. To create a CRA-app run the following:
 
 ```bash
-yarn install
-```
-
-navigate into the /packages/react-scripts folder and create a yarn link to it:
-
-```bash
-yarn link
-```
-
-Then:
-
-```bash
-cd ~/your/projects/folder
-npx create-react-app app-name
-cd app-name
-```
-
-Use the yarn link you just created to `react-scripts`
-
-```
-yarn link react-scripts
-yarn install
+yarn create react-app your-app-name-goes-here
 ```
 
 Finally follow the guide for setting up TypeScript:
 
-https://github.com/facebook/create-react-app/blob/6a94cc7c510e60da7df6ff144c7c75d87fe2ae07/docusaurus/docs/adding-typescript.md
+https://facebook.github.io/create-react-app/docs/adding-typescript
 
 ## React - basic setup
 
