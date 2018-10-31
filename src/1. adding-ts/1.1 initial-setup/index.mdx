@@ -8,6 +8,8 @@ menu: Adding TS to a JS project
 
 Adding TS to your JS project essentially consists of the following steps:
 
+*Note*: If you are using [create-react-app](https://github.com/facebook/create-react-app) TypeScript is now officially supported. Check the [docs](https://facebook.github.io/create-react-app/docs/adding-typescript) for more info.
+
 ## 1. Install the TypeScript compiler - **tsc**
 
 ```bash
@@ -38,19 +40,25 @@ In order to run `@babel/preset-typescript` you must have Babel 7. If your build 
 
 To upgrade your babel and core preset/plugins there is a useful script that automates the process:
 
+```bash
 npx babel-upgrade
+```
 
 This shows you the output of what _would_ be installed, should you choose to.
 
 If you want to proceed and actually perform the babel upgrade, write to package.json and install run:
-npx babel-upgrade --write --install
-		
 
+```bash
+npx babel-upgrade --write --install
+```
+		
 ### 2B. Switching out Babel for tsc
-You might have a few standard Babel presets/plugins setup. You are fine with handing the transpilation over to the TypeScript compiler since it does most things that Babel does in terms of transpiling modern JS features down to the desired target.
+You might have a few standard Babel presets/plugins setup. You are fine with handing the transpilation over to the TypeScript compiler since it does most things that Babel does in terms of transpiling modern JS features down to the desired target. In this case go with tsc as the main build tool and [configure](https://www.typescriptlang.org/docs/handbook/compiler-options.html) it as you wish. If Webpack is managing your build - read on.
 
 ### Webpack configuration
-If you are using Webpack you have decided to skip Babel two popular loaders are [ts-loader](https://github.com/TypeStrong/ts-loader) and [awesome-typescript-loader](https://github.com/s-panferov/awesome-typescript-loader). Here is a [npmtrends](https://www.npmtrends.com/ts-loader-vs-awesome-typescript-loader) comparison of the two.
+If you are using Webpack your setup basically comes down to wether you decided to keep or skip Babel. If you decide to keep Babel, your can keep most your webpack config intact, letting `babel-loader` do its thing while making sure that `@babel/preset-typescript` is configured in the Babel chain. Either through `.babelrc` or by passing Babel options in your Webpack config. Read up on how [here](https://github.com/babel/babel-loader).
+
+If you decided to skip Babel and go all in on TypeScript two popular loaders are [ts-loader](https://github.com/TypeStrong/ts-loader) and [awesome-typescript-loader](https://github.com/s-panferov/awesome-typescript-loader). Here is a [npmtrends](https://www.npmtrends.com/ts-loader-vs-awesome-typescript-loader) comparison of the two.
 
 ### Integrating with other build tools
 For more information on integrating with other build tools such as Gulp, Grunt, Browserify etc. -
